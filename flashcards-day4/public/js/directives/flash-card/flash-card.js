@@ -38,7 +38,7 @@ app.directive('flashCard', function (ScoreFactory, FlashCardsFactory) {
                     console.log(card);
                     scope.editing = false;
                 });
-            }
+            };
         }
 
     };
