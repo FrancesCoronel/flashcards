@@ -1,0 +1,11 @@
+<div class="flash-card">
+    <h1>
+                {{ card.question}}
+              </h1>
+    <h2 ng-show="answered" class="answer-feedback" ng-class="{ correct: answeredCorrectly, incorrect: !answeredCorrectly }">{{ feedback }}</h2>
+    <ul class="flash-card-answers">
+        <li element-hover class="flash-card-answer" ng-click="answerQuestion(answer)" ng-repeat="answer in card.answers">
+            {{ answer.text }}
+        </li>
+    </ul>
+</div>

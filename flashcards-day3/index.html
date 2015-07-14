@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flash Cards</title>
+    <!-- We've provided some styles for you, aren't we nice? -->
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+    <div ng-app="FlashCardApp">
+        <div ng-controller="StatsController" id="statistics">
+            <div id="scoreboard">
+                <h3>Correct: <span>{{ scores.correct }}</span></h3>
+                <h3>Incorrect: <span>{{ scores.incorrect }}</span></h3>
+            </div>
+        </div>
+        <div ng-controller="MainCtrl">
+            <loader ng-show="!cardsReturn"></loader>
+            <button ng-repeat="category in categories" class="category-button" ng-click="filterByCategory(category)" ng-class="{active: activeCat == category}">{{ category }}</button>
+            <flash-card ng-repeat="flashCard in flashCards | orderBy:'question'" card="flashCard"></flash-card>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+    <!-- <script src="controllers/flashCard.controller.js"></script> -->
+    <script src="controllers/main.controller.js"></script>
+    <script src="controllers/stats.controller.js"></script>
+    <script src="factories/flashCard.factory.js"></script>
+    <script src="factories/score.factory.js"></script>
+    <script src="directives/loader/loader.js"></script>
+</body>
+
+</html>

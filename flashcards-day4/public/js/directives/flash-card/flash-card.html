@@ -1,0 +1,34 @@
+<div class="flash-card">
+
+    <h1>{{ card.question | uppercase }}</h1>
+    <h3>{{ card.category }}</h3>
+
+    <ul class="flash-card-answers">
+        <li border-on-hover class="flash-card-answer"
+            ng-click="answerQuestion(answer)"
+            ng-repeat="answer in card.answers">
+            {{ answer.text }}
+        </li>
+    </ul>
+
+    <h2 class="answer-feedback"
+        ng-show="answered"
+        ng-class="{ correct: answeredCorrectly, incorrect: !answeredCorrectly }">
+        <span ng-show="answeredCorrectly">Yeah, you got it right!</span>
+        <span ng-show="!answeredCorrectly">Nope, you got it wrong.</span>
+    </h2>
+    <button ng-click="updateCard()">Edit Card</button>
+    <form ng-show="editing" name="editCardForm" ng-submit="editCardForm.$valid && submit(card)">
+        <span ng-show="editCardForm.question.$error.required && editCardForm.$submitted">Question is a required field</span>
+        <span ng-show="editCardForm.question.$error.minlength && editCardForm.$submitted">Category is too short</span>
+        Question: <input required ng-minlength="15" name="question" type="text" ng-model="card.question" /><br />
+        <span ng-show="editCardForm.category.$error.required && editCardForm.$submitted">Category is a required field</span>
+        Category: <input required name="category" type="text" ng-model="card.category" />
+        <div ng-repeat="answer in card.answers">
+            <span ng-show="editCardForm['answer' + ($index + 1)].$error.maxlength && editCardForm.$submitted">Answer is too long</span>
+            Answer #{{ $index + 1 }}: <input name="answer{{ $index + 1 }}" ng-maxlength="40" type="text" ng-model="answer.text" />
+            Correct <input name="correct" type="radio" ng-value="true" ng-change="clearOthers($index)" ng-model="answer.correct">
+        </div>
+        <button>Save</button>
+    </form>
+</div>

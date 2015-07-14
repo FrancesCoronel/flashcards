@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Flash Cards</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <script src="js/lib/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/MainController.js"></script>
+        <script src="js/controllers/StatsController.js"></script>
+        <script src="js/factories/FlashCardsFactory.js"></script>
+        <script src="js/factories/ScoreFactory.js"></script>
+        <script src="js/directives/loader/loader.js"></script>
+        <script src="js/directives/flash-card/flash-card.js"></script>
+        <script src="js/directives/border-on-hover.js"></script>
+        <script src="js/filters/cheat-filter.js"></script>
+        <script src="js/controllers/NewCardController.js"></script>
+    </head>
+
+    <body ng-app="FlashCards">
+
+        <div ng-include="'templates/stats.html'">
+        </div>
+
+        <div ng-controller="MainController">
+
+            <loader ng-show="cardsLoading"></loader>
+
+            <div ng-hide="cardsLoading">
+
+                <button
+                        class="category-button"
+                        ng-click="getAllCards()"
+                        ng-class="{ active: chosenCategory === 'All' }">
+                    All Categories
+                </button>
+
+                <button
+                        class="category-button"
+                        ng-repeat="category in categories"
+                        ng-click="getCategoryCards(category)"
+                        ng-class="{ active: chosenCategory === category }">
+                    {{ category }}
+                </button>
+
+                <flash-card card="entry" ng-repeat="entry in flashCards"></flash-card>
+
+            </div>
+
+        </div>
+
+        <div ng-controller="NewCardController">
+            <form name="newCardForm" ng-submit="newCardForm.$valid && submit(newCard)">
+                <span ng-show="newCardForm.question.$error.required && newCardForm.$submitted">Question is a required field</span>
+                <span ng-show="newCardForm.question.$error.minlength && newCardForm.$submitted">Category is too short</span>
+                Question: <input required ng-minlength="15" name="question" type="text" ng-model="newCard.question" /><br />
+                <span ng-show="newCardForm.category.$error.required && newCardForm.$submitted">Category is a required field</span>
+                Category: <input required name="category" type="text" ng-model="newCard.category" />
+                <div ng-repeat="answer in newCard.answers">
+                    <span ng-show="newCardForm['answer' + ($index + 1)].$error.maxlength && newCardForm.$submitted">Answer is too long</span>
+                    Answer #{{ $index + 1 }}: <input name="answer{{ $index + 1 }}" ng-maxlength="40" type="text" ng-model="answer.text" />
+                    Correct <input name="correct" type="radio" ng-value="true" ng-change="clearOthers($index)" ng-model="answer.correct">
+                </div>
+                <button>Submit</button>
+            </form>
+
+        </div>
+
+    </body>
+
+</html>

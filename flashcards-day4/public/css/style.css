@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box; }
+
+html, body {
+  font-family: Helvetica;
+  text-align: center; }
+
+.border-on-hover {
+  border: 5px solid red !important; }
+
+.category-button {
+  border: 1px solid black;
+  background: none;
+  padding: 20px;
+  margin-right: 15px;
+  cursor: pointer;
+  outline: none; }
+  .category-button.active {
+    background: gainsboro; }
+
+.flash-card {
+  position: relative;
+  width: 60%;
+  height: 400px;
+  margin: 0 auto;
+  margin-top: 40px;
+  border: 1px solid black;
+  padding: 50px;
+  box-shadow: 3px 4px 5px 1px #6b6b6b; }
+  .flash-card h1 {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 40px; }
+  .flash-card h3 {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    color: #bababa; }
+  .flash-card .flash-card-answers {
+    width: 100%;
+    margin: 0 auto;
+    clear: both; }
+    .flash-card .flash-card-answers:before, .flash-card .flash-card-answers:after {
+      content: " ";
+      /* 1 */
+      display: table;
+      /* 2 */ }
+    .flash-card .flash-card-answers:after {
+      clear: both; }
+  .flash-card .flash-card-answer {
+    min-height: 100px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 20px;
+    float: left;
+    width: 32%;
+    margin-right: 2%;
+    cursor: pointer;
+    line-height: 1.3em; }
+    .flash-card .flash-card-answer:last-child {
+      margin-right: 0; }
+
+.answer-feedback {
+  text-align: center;
+  margin-top: 50px;
+  font-weight: bold; }
+  .answer-feedback.correct {
+    color: green; }
+  .answer-feedback.incorrect {
+    color: red; }
+
+#statistics {
+  padding: 40px; }
+  #statistics:before, #statistics:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */ }
+  #statistics:after {
+    clear: both; }
+  #statistics #scoreboard {
+    float: right;
+    margin: 0 auto; }
+    #statistics #scoreboard h3 {
+      margin-right: 40px;
+      float: left; }
+      #statistics #scoreboard h3:last-child {
+        margin-right: 0; }
+      #statistics #scoreboard h3 span {
+        font-weight: bold; }
