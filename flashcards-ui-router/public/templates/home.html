@@ -1,0 +1,45 @@
+<div ng-controller="MainController">
+    <div ng-show="editedCard">
+        <h1>Card successfully edited.</h1>
+    </div>
+    <div ng-show="deletedCard">
+        <h1>Card sucessfully deleted.</h1>
+    </div>
+    <loader ng-show="cardsLoading"></loader>
+    <div ng-hide="cardsLoading">
+        <div class="container-fluid">
+            <div class="row" id="flashCardCarousel">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                    <button class="btn btn-block btn-lg btn-info" ng-click="getAllCards()" ng-class="{ active: chosenCategory === 'All' }">
+                        All Categories
+                    </button>
+                </div>
+                <div class="col-md-2" ng-repeat="category in categories">
+                    <button class="btn btn-block btn-lg btn-inverse" ng-click="getCategoryCards(category)" ng-class="{ active: chosenCategory === category }">
+                        {{ category }}
+                    </button>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div ng-include="'templates/stats.html'">
+            </div>
+            <div class="carousel slide" data-ride="carousel" id="myCarousel">
+                <!--                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="$index" ng-repeat="entry in flashCards" ng-class="{ active: $index === 0 }"></li>
+                </ol> -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item" ng-class="{ active: $index === 0 }" ng-repeat="entry in flashCards">
+                        <div class="container">
+                            <div class="row">
+                                <flash-card card="entry" index="$index" length="flashCards.length"></flash-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

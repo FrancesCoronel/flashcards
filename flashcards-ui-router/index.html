@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="FlashCards App">
+    <meta name="author" content="FVCproductions & Yves">
+    <link rel="icon" href="images/favicon.ico">
+    <title>Flash Cards</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" href="flat-ui/dist/css/flat-ui.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="normalize.css/normalize.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <script src="jquery/dist/jquery.min.js" /></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<!--     <script src="flat-ui/dist/js/flat-ui.min.js"></script> -->
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-ui-router.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/MainController.js"></script>
+    <script src="js/controllers/ManageCardController.js"></script>
+    <script src="js/controllers/EditCardController.js"></script>
+    <script src="js/controllers/DeleteCardController.js"></script>
+    <script src="js/controllers/NewCardController.js"></script>
+    <script src="js/controllers/StatsController.js"></script>
+    <script src="js/factories/FlashCardsFactory.js"></script>
+    <script src="js/factories/ScoreFactory.js"></script>
+    <script src="js/directives/loader/loader.js"></script>
+    <script src="js/directives/flash-card/flash-card.js"></script>
+    <script src="js/directives/border-on-hover.js"></script>
+    <script src="js/filters/cheat-filter.js"></script>
+    <script src="js/controllers/NewCardController.js"></script>
+</head>
+<div ng-app="FlashCards">
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- <div class="col-md-3"></div> -->
+                <div class="col-md-6"><a ui-sref="home" data-toggle="tooltip" title="Home" data-placement="bottom"><i class="fa fa-home fa-5x"></i></a></div>
+                <!-- <div class="col-md-2"> -->
+                <!-- <img src="https://lh6.ggpht.com/coxZGpb0KHEQKnncJYqe2Bc-z_lkZ64A69Mh0BpJyieZHmPc5JYuVcGEJ6ywG466zA=w50" align="middle"></div> -->
+                <div class="col-md-6"><a ui-sref="addCard" data-toggle="tooltip" title="Add New Card" data-placement="bottom"><i class="fa fa-plus fa-5x"></i></a></div>
+                <!-- <div class="col-md-3"></div> -->
+            </div>
+        </div>
+        <ui-view></ui-view>
+    </body>
+    <footer>
+        <h3>Made with ❤ by <a href="http://fvcproductions.com" target="_blank" alt="FVCproductions">FVCproductions</a> & <a href="http://linkedin.com/in/yvesyuen" target="_blank" alt="Yves Yuen">Yves</a> at <a href="http://fullstackacademy.com" target="_blank">Fullstack Academy</a>.</h3></footer>
+</div>
+<script>
+$(document).ready(function(){
+   $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+</html>

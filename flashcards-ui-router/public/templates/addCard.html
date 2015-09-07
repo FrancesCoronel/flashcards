@@ -1,0 +1,37 @@
+<h1>Add A New Card</h1>
+<div class="container" id="editCard">
+    <div ng-controller="NewCardController">
+        <form name="newCardForm" ng-submit="newCardForm.$valid && submit(newCard)" class="form-horizontal">
+            </br>
+            <div class="form-group">
+                <span ng-show="newCardForm.question.$error.required && newCardForm.$submitted">Question is a required field</span>
+                <span ng-show="newCardForm.question.$error.minlength && newCardForm.$submitted">Category is too short</span>
+                <label for="theQuestion" class="col-sm-2 control-label">Question</label>
+                <div class="col-sm-10">
+                    <input required ng-minlength="15" name="question" type="text" ng-model="newCard.question" id="theQuestion" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <span ng-show="newCardForm.category.$error.required && newCardForm.$submitted">Category is a required field</span>
+                <label for="theCategory" class="col-sm-2 control-label">Category</label>
+                <div class="col-sm-10">
+                    <input required name="category" type="text" ng-model="newCard.category" id="theCategory" class="form-control" />
+                </div>
+            </div>
+            <div ng-repeat="answer in newCard.answers">
+                <span ng-show="newCardForm['answer' + ($index + 1)].$error.maxlength && newCardForm.$submitted">Answer is too long</span>
+                <div class="form-group">
+                    <label for="theAnswer" class="col-sm-2 control-label"> Answer #{{ $index + 1 }}: </label>
+                    <div class="col-sm-6">
+                        <input name="answer{{ $index + 1 }}" ng-maxlength="40" type="text" ng-model="answer.text" id="theAnswer" class="form-control" />
+                    </div>
+                    <label for="correctAnswer" class="col-sm-2 control-label">Correct</label>
+                    <div class="col-sm-2">
+                        <input name="correct" type="radio" ng-value="true" ng-change="clearOthers($index)" ng-model="answer.correct" id="correctAnswer" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-info">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "name": "flashcards-ui-router",
+  "version": "0.0.0",
+  "homepage": "https://github.com/fvcproductions/flashcards-ui-router",
+  "authors": [
+    "FVCproductions & Yves"
+  ],
+  "description": "Implementing Flashcards using UI Router.",
+  "keywords": [
+    "flashcards",
+    "angular",
+    "ui",
+    "router"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "flat-ui": "~2.2.2",
+    "normalize.css": "~3.0.3"
+  }
+}
